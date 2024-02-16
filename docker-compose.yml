@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: ghcr.io/majksa-dev/dns:main
+    stdin_open: true
+    tty: true
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    networks:
+      - default
+      - frontend
+
+networks:
+  frontend:
+    name: dns
+    attachable: true
