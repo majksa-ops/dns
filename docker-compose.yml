@@ -23,15 +23,8 @@ services:
     networks:
       - default
       - frontend
-    volumes:
-      - 'mail-ssl:/etc/ssl'
 
 networks:
   frontend:
     name: dns
     attachable: true
-
-volumes:
-  mail-ssl:
-    name: mailcow-dockerized--ssl
-    external: true
