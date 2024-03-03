@@ -24,7 +24,7 @@ services:
       - default
       - frontend
     volumes:
-      - 'mail-ssl:/etc/ssl:ro'
+      - 'mail-ssl:/etc/ssl'
 
 networks:
   frontend:
